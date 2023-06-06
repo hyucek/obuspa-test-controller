@@ -1,0 +1,10 @@
+#
+msg_id:"1" to_id:"ops::7E6594-turris-omnia-SN7e6594332fc3" mqtt_topic:"agent/ops::7E6594-turris-omnia-SN7e6594332fc3" mqtt_instance:"1"
+
+
+
+
+
+msg_type:"Operate" command:"Device.WiFi.DataElements.Network.ClientSteering()" command_key:"aasad"  param:"station_mac" value:"04:34:f6:3b:38:a8" param:"target_bssid" value:"00:03:7f:12:9e:83" send_resp:"true"
+
+

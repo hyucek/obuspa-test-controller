@@ -1,0 +1,33 @@
+sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
+sudo apt-get update
+
+sudo apt-get install libssl-dev libcurl4-openssl-dev libsqlite3-dev libz-dev autoconf automake libtool  pkg-config libmosquitto-dev libwebsockets-dev
+
+--build
+autoreconf --force --install
+./configure --disable-coap --disable-websockets --disable-stomp
+make
+
+
+--create a db.
+    --connects to mqtt server
+-- -i is the ethernet interface controller is connected to
+    -- you should see the log LogCallback: MQTT Debug: Client controller123 received CONNACK (0)
+    -- /usr/local/var/obuspa/usp.db should be created after this command is ran. If you need to reset the db simply remove this file and rerun the command with -r
+obuspa -p -v 4 -r factory_reset_example_fromIllia.txt -i enxf8e43b2dca72
+
+
+
+--run a command
+obuspa -p -v 4 -x ctrl_mqtt_example.txt -i enxf8e43b2dca72
+
+
+--db location
+rm /usr/local/var/obuspa/usp.db
+
+--ubus-cli on the controller
+MQTT.Client.1.Enable=1
+LocalAgent.Controller.1.E2ESession.Enable=1
+
+
+

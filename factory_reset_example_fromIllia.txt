@@ -1,0 +1,58 @@
+##########################################################################################################
+#
+# This file contains a factory reset database in text format
+#
+# If no USP database exists when OB-USP-AGENT starts, then OB-USP-AGENT will create a database containing
+# the parameters specified in a text file located by the '-r' option.
+# Example:
+#    obuspa -p -v 4 -r factory_reset_example.txt
+#
+# Each line of this file contains either a comment (denoted by '#' at the start of the line)
+# or a USP data model parameter and its factory reset value.
+# The parameter and value are separated by whitespace.
+# The value may optionally be enclosed in speech marks "" (this is the only way to specify an empty string)
+#
+##########################################################################################################
+
+#
+# The following parameters will definitely need modifying
+#
+#Device.LocalAgent.Controller.1.EndpointID "self::usp-controller.com"
+#Device.STOMP.Connection.1.Host "usp-controller.com"
+Device.MQTT.Client.1.Username "t"
+Device.MQTT.Client.1.Password "t"
+Device.LocalAgent.EndpointID "oui:84C8B1:001"
+
+Device.MQTT.Client.1.Enable true
+Device.MQTT.Client.1.ProtocolVersion "3.1"
+#Device.MQTT.Client.1.EnableEncryption "false"
+Device.MQTT.Client.1.BrokerAddress "127.0.0.1"
+Device.MQTT.Client.1.BrokerPort "1883"
+Device.MQTT.Client.1.TransportProtocol "TCP/IP"
+Device.MQTT.Client.1.ClientID "controller123"
+Device.LocalAgent.MTP.1.MQTT.ResponseTopicConfigured "mqtt-controller-listener"
+
+#
+# The following parameters may be modified
+#
+Device.LocalAgent.MTP.1.Alias "cpe-1"
+Device.LocalAgent.MTP.1.Enable true
+Device.LocalAgent.MTP.1.Protocol "MQTT"
+Device.LocalAgent.MTP.1.MQTT.Reference "Device.MQTT.Client.1"
+Device.LocalAgent.Controller.1.Alias "cpe-1"
+Device.LocalAgent.Controller.1.Enable true
+Device.LocalAgent.Controller.1.EndpointID "ops::7E6594-turris-omnia-SN7e6594332fc3"
+Device.LocalAgent.Controller.1.AssignedRole "Device.LocalAgent.ControllerTrust.Role.1"
+Device.LocalAgent.Controller.1.PeriodicNotifInterval "86400"
+Device.LocalAgent.Controller.1.PeriodicNotifTime "0001-01-01T00:00:00Z"
+Device.LocalAgent.Controller.1.USPNotifRetryMinimumWaitInterval "5"
+Device.LocalAgent.Controller.1.USPNotifRetryIntervalMultiplier "2000"
+Device.LocalAgent.Controller.1.ControllerCode ""
+Device.LocalAgent.Controller.1.MTP.1.Alias "cpe-1" 
+Device.LocalAgent.Controller.1.MTP.1.Enable true
+Device.LocalAgent.Controller.1.MTP.1.Protocol "MQTT"
+Device.LocalAgent.Controller.1.MTP.1.MQTT.Reference "Device.MQTT.Client.1"
+Device.LocalAgent.Controller.1.MTP.1.MQTT.Topic "device_name"
+
+Internal.Reboot.Cause "LocalFactoryReset"
+

@@ -4,7 +4,7 @@
 AC_PREREQ([2.63])
 
 AC_INIT([ob-uspagent],[1.0.0])
-AM_INIT_AUTOMAKE([foreign silent-rules subdir-objects -Wall -Werror -Wno-portability])
+AM_INIT_AUTOMAKE([foreign silent-rules subdir-objects -Wall -Wno-portability])
 AC_CONFIG_MACRO_DIR([m4])
 AC_USE_SYSTEM_EXTENSIONS
 
